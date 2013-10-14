@@ -9,12 +9,15 @@ Task = Backbone.Model.extend();
 TasksList = Backbone.Collection.extend({
   model: Task,
   url: function(){
-    return api_host + "/tasks";
+  	console.log("tasks list url--")
+    //return api_host + "/tasks";
   },
-  parse: function(response){
-    console.log("response: ", response)
-    return response.data;
+  parse: function(response, params){
+    console.log("response: ", response);
+    console.log("params: ", params);
+    return response.tasks;
   },
+  //success: function()
   filterByCategoryId: function(category_id) {
     filtered = this.filter(function(tevent) {
       return tevent.get("category") == category_id;
@@ -23,11 +26,20 @@ TasksList = Backbone.Collection.extend({
   }
 });
 
-
 //Vars
 
 var task = new Task;
 var taskCollection = new TasksList;
+
+taskCollection.fetch = function(){
+	console.log("asdfasf")
+	this.models = [];
+	this.add( new Task({"text": "text1", "tid": "1"}) )
+	this.add( new Task({"text": "text2", "tid": "2"}) )
+	this.add( new Task({"text": "text3", "tid": "3"}) )
+	this.add( new Task({"text": "textx1", "tid": "x1", "parent_id": "1"}) )
+}
+
 taskCollection.fetch(); 
 
 

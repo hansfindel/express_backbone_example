@@ -24,8 +24,12 @@ module.exports = {
 		//console.log(Task);
 		//Task.findAll({}, function(err, tasks){
 		Task.get_main_tasks(function(err, tasks){
-			console.log(tasks);
-			res.write(JSON.stringify({ tasks: tasks }));
+			var json = JSON.stringify( {tasks: tasks} );
+			//console.log(tasks);
+			//res.write(JSON.stringify({ tasks: tasks }));
+			//res.write({tasks: tasks})
+			console.log(json)
+			res.write(json);
 		});	
 	},
 	createTask: function(req, res){
