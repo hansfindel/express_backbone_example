@@ -1,0 +1,24 @@
+h1= title
+p Welcome to #{title}
+
+ul 
+	for task in tasks
+		li(data-id="#{task.tid}") 
+			= task.text
+			a(href="/task/destroy?tid=#{task.tid}") x
+	else
+		li sorry, no tasks yet!
+
+div.hidden
+	hr
+	div
+		form(action="/task" method="post")
+			div.new_task
+				div.field
+					span.label Text
+					input(type="text", name="text", id="new_task_text")
+				div.field
+					span.label Parent
+					input(type="text", name="parent_tid", id="new_task_parent_tid")
+				div#new_task_submit
+					input(type="submit", value="Save")
