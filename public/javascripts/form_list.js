@@ -1,3 +1,4 @@
+/*
 $(document).ready(function(){
 	$("ul li").click(function(){
 		var id = $(this).data("id");
@@ -5,3 +6,4 @@ $(document).ready(function(){
 		$("#new_task_parent_tid").val(id);
 	})	
 })
+*/

@@ -17,7 +17,17 @@ module.exports = {
 			//console.log(tasks);
   			res.render('index', { title: 'To do manager', tasks: tasks })	
   		});
-	}, 
+	},
+	tasks: function(req, res){
+		var Task = db.task;
+		//console.log(db);
+		//console.log(Task);
+		//Task.findAll({}, function(err, tasks){
+		Task.get_main_tasks(function(err, tasks){
+			console.log(tasks);
+			res.write(JSON.stringify({ tasks: tasks }));
+		});	
+	},
 	createTask: function(req, res){
 		var params = req.body;
 		console.log(params);

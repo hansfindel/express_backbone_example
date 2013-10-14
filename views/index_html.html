@@ -1,0 +1,32 @@
+<h1>Tasks</h1>
+
+<ul id="tasks">
+</ul> 
+
+<div class="hidden">
+	<hr>
+	<div>
+		<form action="/task" method="post">
+			<div class="field">
+				<span class="label">Text</span>
+				<input type="text" name="text" id="new_task_text" />
+			</div>
+			<div class="field">
+				<span class="label">Parent</span>
+				<input type="text" name="text" id="new_task_parent_tid" />
+			</div>
+			<div id="new_task_submit">
+				<input type="submit" value="Save" />
+			</div>
+		</form>
+	</div>
+</div>
+
+
+ul 
+	for task in tasks
+		li(data-id="#{task.tid}") 
+			= task.text
+			a(href="/task/destroy?tid=#{task.tid}") x
+	else
+		li sorry, no tasks yet!
