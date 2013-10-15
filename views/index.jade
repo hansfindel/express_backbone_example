@@ -29,8 +29,8 @@ script(type="text/template" id="home")
 	<%= tasks[i].get('text') %>
 	<% if(tasks[i].hasChilds()){ %>
 	<ul>
-	<% for(var j = 0; j < tasks[i].childs().length; j++){ %>
-	<li><%= tasks[i].childs()[j].get("text") %></li>
+	<% for(var j = 0; j < tasks[i].childArray.length; j++){ %>
+	<li><%= tasks[i].childArray[j].get("text") %></li>
 	<% } %>				
 	</ul>
 	<% } %>

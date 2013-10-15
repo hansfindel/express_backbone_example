@@ -18,12 +18,9 @@ Task = Backbone.Model.extend({
 		}
 	}, 
 	hasChilds: function(){
-		var childs = this.childs;
-		if(childs){
-			var models = childs.models;
-			if(models){
-				return models.length > 0;
-			}
+		var task_childs = this.childs();
+		if(task_childs){
+			return task_childs.length > 0;
 		}
 		return false
 	}
