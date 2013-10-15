@@ -5,7 +5,29 @@
 var api_host = "http://localhost:3000"
 
 //Models
-Task = Backbone.Model.extend();
+Task = Backbone.Model.extend({
+	childs: function(){
+		if(taskCollection){
+			if(this.childArray){
+				return this.childs; 
+			}
+			this.childArray = taskCollection.filterByParentId(this.get("tid")).models;
+			return this.childArray;
+		}else{
+			return new TasksList(); //empty
+		}
+	}, 
+	hasChilds: function(){
+		var childs = this.childs;
+		if(childs){
+			var models = childs.models;
+			if(models){
+				return models.length > 0;
+			}
+		}
+		return false
+	}
+});
 TasksList = Backbone.Collection.extend({
   model: Task,
   url: function(){
@@ -18,9 +40,16 @@ TasksList = Backbone.Collection.extend({
     return response.tasks;
   },
   //success: function()
-  filterByCategoryId: function(category_id) {
+  filterByParentId: function(parent_id) {
     filtered = this.filter(function(tevent) {
-      return tevent.get("category") == category_id;
+      return tevent.get("parent_id") == parent_id;
+    });
+    return new TasksList(filtered);
+  }, 
+  main: function(){
+  	filtered = this.filter(function(task) {
+  	  var parent = task.get("parent_id");
+      return (parent == undefined);
     });
     return new TasksList(filtered);
   }
@@ -70,11 +99,9 @@ window.HomeView = Backbone.View.extend({
     },
 
     render:function () {
-        var collection = this.collection;
-        if(collection.length > 0){
-            //console.log("prev: ", prev, "ev: ", ev, "next: ", next);
-        }
-        $(this.el).html( this.template({}) );
+        var collection = this.collection.main();
+        //console.log("home collection: ", collection)
+        $(this.el).html( this.template({ tasks: collection.models }) );
         return this;
     },
 
