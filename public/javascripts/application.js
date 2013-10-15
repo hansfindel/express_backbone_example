@@ -39,7 +39,7 @@ taskCollection.fetch = function(){
 	this.add( new Task({"text": "text3", "tid": "3"}) )
 	this.add( new Task({"text": "textx1", "tid": "x1", "parent_id": "1"}) )
 }
-
+// fake fetch, only local to setup the variables
 taskCollection.fetch(); 
 
 
