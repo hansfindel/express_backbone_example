@@ -32,12 +32,18 @@ script(type="text/template" id="home")
 	
 script(type="text/template" id="task")
 	<li data-id='<%= task.get('tid') %>'>
-	<%= task.get('text') %>
-	<% if(task.hasChilds()){ %>
+	<input type="text" value="<%= task.get('text') %>" />
 	<ul>
+	<% if(task.hasChilds()){ %>
+	<span><i class="arrow-down"></i></span>
 	<% for(var j = 0; j < task.childArray.length; j++){ %>
 	<%= compile_template('task', {task: task.childArray[j]}) %>
-	<% } %>				
-	</ul>
+	<% } %>	
+	<% }else{ %>
+	<span class="right"><i class="arrow-right"></i></span>			
 	<% } %>
+	<li class="hidden">
+	<span>New child</span>
+	</li>
+	</ul>
 	</li> 

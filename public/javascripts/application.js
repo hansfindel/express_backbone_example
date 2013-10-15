@@ -14,7 +14,7 @@ Task = Backbone.Model.extend({
 			this.childArray = taskCollection.filterByParentId(this.get("tid")).models;
 			return this.childArray;
 		}else{
-			return new TasksList(); //empty
+			return []; //empty
 		}
 	}, 
 	hasChilds: function(){
