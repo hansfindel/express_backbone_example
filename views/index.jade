@@ -25,17 +25,19 @@ script(type="text/template" id="home")
 	<h1>Tasks</h1>
 	<ul>
 	<% for(var i = 0; i < tasks.length; i++){ %>
-	<li data-id='<%= tasks[i].get('tid') %>'>
-	<%= tasks[i].get('text') %>
-	<% if(tasks[i].hasChilds()){ %>
-	<ul>
-	<% for(var j = 0; j < tasks[i].childArray.length; j++){ %>
-	<li><%= tasks[i].childArray[j].get("text") %></li>
-	<% } %>				
-	</ul>
-	<% } %>
-	</li> 
+	<%= compile_template('task', {task: tasks[i]}) %>
 	<% } %> 
 	</ul>
 	</div>
 	
+script(type="text/template" id="task")
+	<li data-id='<%= task.get('tid') %>'>
+	<%= task.get('text') %>
+	<% if(task.hasChilds()){ %>
+	<ul>
+	<% for(var j = 0; j < task.childArray.length; j++){ %>
+	<%= compile_template('task', {task: task.childArray[j]}) %>
+	<% } %>				
+	</ul>
+	<% } %>
+	</li> 

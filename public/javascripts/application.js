@@ -146,3 +146,7 @@ $(document).ready(function () {
     Backbone.history.start();
 
 });
+
+function compile_template(template_name, params){
+	return _.template($("#" + template_name).html(), params);
+}
