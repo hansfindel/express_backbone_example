@@ -37,12 +37,12 @@ Task = Backbone.Model.extend({
 TasksList = Backbone.Collection.extend({
   model: Task,
   url: function(){
-  	console.log("tasks list url--")
+  	//console.log("tasks list url--")
     //return api_host + "/tasks";
   },
   parse: function(response, params){
-    console.log("response: ", response);
-    console.log("params: ", params);
+    //console.log("response: ", response);
+    //console.log("params: ", params);
     return response.tasks;
   },
   //success: function()
@@ -73,7 +73,7 @@ var task = new Task;
 var taskCollection = new TasksList;
 
 taskCollection.fetch = function(){
-	console.log("asdfasf")
+	//console.log("asdfasf")
 	this.models = [];
 	this.add( new Task({"text": "text1", "tid": "1"}) )
 	this.add( new Task({"text": "text2", "tid": "2"}) )
@@ -150,7 +150,7 @@ var AppRouter = Backbone.Router.extend({
     },
         
     home:function () {
-        console.log('#home');
+        //console.log('#home');
         var home_collection = taskCollection;
         this.changePage(new HomeView({ collection: home_collection }),'slide',true);
     },
@@ -222,3 +222,11 @@ function removeTask(task){
 		}
 	}
 }
+function save(){
+	var models = taskCollection.models;
+	//console.log( models)
+	if(typeof(Storage)!=="undefined"){
+    	localStorage.setItem( 'tasks', JSON.stringify(models) );
+	}
+}
+

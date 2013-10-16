@@ -13,6 +13,25 @@ input{
 input.new_element{
 	/*box-shadow: 1px;*/
 }
+input[type=button]{
+	width: 150px;
+	height: 50px;
+	background: #000;
+	color: white;
+	font-size: 14px;
+	padding: 10px;
+	cursor: pointer;
+	margin: 2px;
+	-webkit-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	-ms-transition: all 0.2s;
+	-o-transition: all 0.2s;
+	transition: all 0.2s;
+}
+input:hover[type=button]{
+	border: 2px solid blue;
+	background: rgba(0, 0, 0, .8)
+}
 .hidden{
 	display: none;
 }
