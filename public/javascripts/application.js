@@ -200,7 +200,7 @@ function addToTasks(element){
 	//console.log(element)
 	//console.log(this)
 	if(event.which==13){ //enter
-		console.log(element)
+		//console.log(element)
 		var val = element.value;
 		var parent = $(element).parent().parent().data("id");
 		//console.log(parent)
@@ -212,6 +212,13 @@ function addToTasks(element){
 		//$(element).addClass("hidden");
 		$(element).remove()
 		$(parent_element).append(html);
+
+		var last_input = $(parent_element).children("input.new_element")
+		
+		//last_input.attr("autofocus", true)
+		last_input.context["autofocus"] =  true
+		//console.log(last_input)
+		last_input.context.select()
 	}	
 }
 function destroyTask(element){
@@ -235,12 +242,12 @@ function removeTask(task){
 }
 function update_task(element){
 	var val = $(element).val()
-	console.log(val)
+	//console.log(val)
 	var tid = $(element).parent().data("id")
 	var task = taskCollection.getByTid(tid)
 	//console.log(task)
 	task.update_value('text', val)
-	console.log(task)
+	//console.log(task)
 }
 function save(){
 	var models = taskCollection.models;
