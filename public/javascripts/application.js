@@ -244,3 +244,10 @@ function retrieve(){
 	}
 	return [];
 }
+function back_to_data(){
+	taskCollection.fetch();
+	//clean current data
+	$("div[data-role=content]").html("")
+	//print old data
+	app.home();
+}

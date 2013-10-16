@@ -32,7 +32,7 @@ script(type="text/template" id="home")
 	
 script(type="text/template" id="task")
 	<li data-id='<%= task.get('tid') %>'>
-	<input type="text" value="<%= task.get('text') %>" />
+	<input type="text" value="<%= task.get('text') %>"/>
 	<span class="destroy" onclick="destroyTask(this)"></span>
 	<ul>
 	<% if(task.hasChilds()){ %>
