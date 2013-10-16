@@ -190,7 +190,7 @@ function addToTasks(element){
 		var task = new Task({text: val, parent_id: parent})
 		taskCollection.add(task);
 		var html = compile_template('task', {task: task} )
-		console.log("html generated:", html)
+		//console.log("html generated:", html)
 		var parent_element = $(element).parent();
 		$(element).addClass("hidden");
 		$(parent_element).append(html);

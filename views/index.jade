@@ -42,6 +42,6 @@ script(type="text/template" id="task")
 	<% }else{ %>
 	<span data-span_id='<%= task.get('tid') %>' class="right" onclick="toggle_arrow('<%= task.get('tid') %>')"><i class="arrow-right" ></i></span>			
 	<% } %>
-	<input value="" class="new_element" onkeydown="addToTasks(this)"/>
+	<input value="" placeholder="*" class="new_element" onkeydown="addToTasks(this)"/>
 	</ul>
 	</li> 

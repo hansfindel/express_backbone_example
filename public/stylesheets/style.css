@@ -10,6 +10,9 @@ a {
 input{
 	border-width: 0px;
 }
+input.new_element{
+	/*box-shadow: 1px;*/
+}
 .hidden{
 	display: none;
 }
