@@ -6,6 +6,15 @@ var api_host = "http://localhost:3000"
 
 //Models
 Task = Backbone.Model.extend({
+	defaults:{
+		text: "some random text", 
+	},
+	initialize: function(){
+		//console.log("new task...")
+		if(this.get("tid") == undefined){
+			this.attributes["tid"] = parseInt(Date.now());
+		}
+	},
 	childs: function(){
 		if(taskCollection){
 			if(this.childArray){
@@ -63,16 +72,16 @@ taskCollection.fetch = function(){
 	this.add( new Task({"text": "text1", "tid": "1"}) )
 	this.add( new Task({"text": "text2", "tid": "2"}) )
 	this.add( new Task({"text": "text3", "tid": "3"}) )
-	this.add( new Task({"text": "textx1", "tid": "x1", "parent_id": "1"}) )
-	this.add( new Task({"text": "textx1", "tid": "x2", "parent_id": "1"}) )
-	this.add( new Task({"text": "textx1", "tid": "x3", "parent_id": "1"}) )
-	this.add( new Task({"text": "textx1", "tid": "x1_1", "parent_id": "x1"}) )
-	this.add( new Task({"text": "textx1", "tid": "x1_2", "parent_id": "x1"}) )
-	this.add( new Task({"text": "textx1", "tid": "x2_1", "parent_id": "x2"}) )
-	this.add( new Task({"text": "textx1", "tid": "x1_1_1", "parent_id": "x1_1"}) )
-	this.add( new Task({"text": "textx1", "tid": "x1_1_2", "parent_id": "x1_2"}) )
-	this.add( new Task({"text": "textx1", "tid": "x1_2_1", "parent_id": "x2_1"}) )
-	this.add( new Task({"text": "textx1", "tid": "x1_1_2_1", "parent_id": "x1_1_2"}) )
+	this.add( new Task({"text": "t1", "tid": "x1", "parent_id": "1"}) )
+	this.add( new Task({"text": "t2", "tid": "x2", "parent_id": "1"}) )
+	this.add( new Task({"text": "t3", "tid": "x3", "parent_id": "1"}) )
+	this.add( new Task({"text": "t33", "tid": "x1_1", "parent_id": "x1"}) )
+	this.add( new Task({"text": "t", "tid": "x1_2", "parent_id": "x1"}) )
+	this.add( new Task({"text": "terminator", "tid": "x2_1", "parent_id": "x2"}) )
+	this.add( new Task({"text": "tomato", "tid": "x1_1_1", "parent_id": "x1_1"}) )
+	this.add( new Task({"text": "tea", "tid": "x1_1_2", "parent_id": "x1_2"}) )
+	this.add( new Task({"text": "this", "tid": "x1_2_1", "parent_id": "x2_1"}) )
+	this.add( new Task({"text": "that", "tid": "x1_1_2_1", "parent_id": "x1_1_2"}) )
 }
 // fake fetch, only local to setup the variables
 taskCollection.fetch(); 
@@ -158,4 +167,14 @@ $(document).ready(function () {
 
 function compile_template(template_name, params){
 	return _.template($("#" + template_name).html(), params);
+}
+
+function toggle_arrow(tid){
+	element = "span[data-span_id=" + tid + "]"
+	console.log(element)
+	//console.log($(element))
+	$(element).toggleClass("right");
+	$(element).children().toggleClass("arrow-right");
+	$(element).children().toggleClass("arrow-down");
+	$(element).siblings().toggleClass("hidden");
 }

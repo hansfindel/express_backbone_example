@@ -35,15 +35,13 @@ script(type="text/template" id="task")
 	<input type="text" value="<%= task.get('text') %>" />
 	<ul>
 	<% if(task.hasChilds()){ %>
-	<span><i class="arrow-down"></i></span>
+	<span data-span_id='<%= task.get('tid') %>' onclick="toggle_arrow('<%= task.get('tid') %>')"><i class="arrow-down" ></i></span>
 	<% for(var j = 0; j < task.childArray.length; j++){ %>
 	<%= compile_template('task', {task: task.childArray[j]}) %>
 	<% } %>	
 	<% }else{ %>
-	<span class="right"><i class="arrow-right"></i></span>			
+	<span data-span_id='<%= task.get('tid') %>' class="right" onclick="toggle_arrow('<%= task.get('tid') %>')"><i class="arrow-right" ></i></span>			
 	<% } %>
-	<li class="hidden">
-	<span>New child</span>
-	</li>
+	<input value="" class="new_element"/>
 	</ul>
 	</li> 
