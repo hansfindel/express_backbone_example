@@ -198,7 +198,8 @@ function addToTasks(element){
 		var html = compile_template('task', {task: task} )
 		//console.log("html generated:", html)
 		var parent_element = $(element).parent();
-		$(element).addClass("hidden");
+		//$(element).addClass("hidden");
+		$(element).remove()
 		$(parent_element).append(html);
 	}	
 }
@@ -208,7 +209,7 @@ function destroyTask(element){
 	var task = taskCollection.getByTid(taskId)
 	if(task){
 		removeTask(task);
-		parent.addClass("hidden")
+		parent.remove()
 	}
 }
 function removeTask(task){
