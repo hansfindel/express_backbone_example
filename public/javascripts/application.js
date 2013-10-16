@@ -219,6 +219,10 @@ function addToTasks(element){
 		//last_input.context["autofocus"] =  true
 		//console.log(last_input)
 		//last_input.context.select()
+		if($(parent_element).data("origin")){
+			var more_html = compile_template('new_element_input', {} )
+			$(parent_element).append(more_html);
+		}
 	}	
 }
 function destroyTask(element){
