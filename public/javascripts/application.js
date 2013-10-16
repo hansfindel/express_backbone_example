@@ -205,6 +205,7 @@ function addToTasks(element){
 		var parent = $(element).parent().parent().data("id");
 		//console.log(parent)
 		var task = new Task({text: val, parent_id: parent})
+		//console.log(task)
 		taskCollection.add(task);
 		var html = compile_template('task', {task: task} )
 		//console.log("html generated:", html)
@@ -219,10 +220,10 @@ function addToTasks(element){
 		//last_input.context["autofocus"] =  true
 		//console.log(last_input)
 		//last_input.context.select()
-		if($(parent_element).data("origin")){
-			var more_html = compile_template('new_element_input', {} )
-			$(parent_element).append(more_html);
-		}
+		
+		var more_html = compile_template('new_element_input', {} )
+		$(parent_element).append(more_html);
+		
 	}	
 }
 function destroyTask(element){

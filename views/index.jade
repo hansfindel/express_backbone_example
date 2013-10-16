@@ -41,11 +41,13 @@ script(type="text/template" id="task")
 	<% for(var j = 0; j < task.childArray.length; j++){ %>
 	<%= compile_template('task', {task: task.childArray[j]}) %>
 	<% } %>	
+	<input value="" placeholder="*" class="new_element" onkeydown="addToTasks(this)"/>
 	<% }else{ %>
 	<span data-span_id='<%= task.get('tid') %>' class="right" onclick="toggle_arrow('<%= task.get('tid') %>')"><i class="arrow-right" ></i></span>			
+	<input value="" placeholder="*" class="new_element hidden" onkeydown="addToTasks(this)"/>
 	<% } %>
-	<input value="" placeholder="*" class="new_element" onkeydown="addToTasks(this)"/>
 	</ul>
 	</li> 
+
 script(type="text/template" id="new_element_input")
 	<input value="" placeholder="*" class="new_element" onkeydown="addToTasks(this)"/>
