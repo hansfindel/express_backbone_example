@@ -38,6 +38,9 @@ input:hover[type=button]{
 header ul, header ul li{
 	list-style: none;
 }
+ul{
+	min-height: 30px;
+}
 ul li{
 	display: block;
 	clear: both;

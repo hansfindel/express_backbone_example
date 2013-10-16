@@ -188,7 +188,7 @@ function compile_template(template_name, params){
 
 function toggle_arrow(tid){
 	element = "span[data-span_id=" + tid + "]"
-	console.log(element)
+	//console.log(element)
 	//console.log($(element))
 	$(element).toggleClass("right");
 	$(element).children().toggleClass("arrow-right");
@@ -216,9 +216,9 @@ function addToTasks(element){
 		var last_input = $(parent_element).children("input.new_element")
 		
 		//last_input.attr("autofocus", true)
-		last_input.context["autofocus"] =  true
+		//last_input.context["autofocus"] =  true
 		//console.log(last_input)
-		last_input.context.select()
+		//last_input.context.select()
 	}	
 }
 function destroyTask(element){
