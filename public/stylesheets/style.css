@@ -47,6 +47,7 @@ li span.right{
 	border-top: 5px solid #2f2f2f;
 	font-size: 0;
 	line-height: 0;
+	cursor: pointer;
 }
 /* create an arrow that points right */
 .arrow-right {
@@ -57,6 +58,7 @@ li span.right{
 	border-left: 5px solid #2f2f2f; /* bottom, add background color here */
 	font-size: 0;
 	line-height: 0;
+	cursor: pointer;
 }
 
 
@@ -68,7 +70,7 @@ li > .destroy {
 	margin-top: -20px;
 	margin-left: -30px;
 	width: 15px;
-	height: 40px;
+	/*height: 40px;*/
 	font-size: 15px;
 	color: rgb(180,0,0);
 	opacity: 0.3;
