@@ -47,8 +47,8 @@ TasksList = Backbone.Collection.extend({
   },
   //success: function()
   filterByParentId: function(parent_id) {
-    filtered = this.filter(function(tevent) {
-      return tevent.get("parent_id") == parent_id;
+    filtered = this.filter(function(task) {
+      return task.get("parent_id") == parent_id;
     });
     return new TasksList(filtered);
   }, 
@@ -58,6 +58,12 @@ TasksList = Backbone.Collection.extend({
       return (parent == undefined);
     });
     return new TasksList(filtered);
+  },
+  getByTid: function(id){
+  	filtered = this.filter(function(task) {
+      return task.get("tid") == id;
+    });
+    return filtered[0] || null;
   }
 });
 
@@ -194,6 +200,24 @@ function addToTasks(element){
 		var parent_element = $(element).parent();
 		$(element).addClass("hidden");
 		$(parent_element).append(html);
+	}	
+}
+function destroyTask(element){
+	var parent = $(element).parent();
+	var taskId = parent.data("id");
+	var task = taskCollection.getByTid(taskId)
+	if(task){
+		removeTask(task);
+		parent.addClass("hidden")
 	}
-	
+}
+function removeTask(task){
+	if(taskCollection){
+		taskCollection.remove(task);
+		task.childs()
+		//console.log( task.childArray )
+		for(var i = 0; i < task.childArray.length; i++){
+			removeTask(task.childArray[i]);
+		}
+	}
 }
