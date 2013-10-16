@@ -178,3 +178,22 @@ function toggle_arrow(tid){
 	$(element).children().toggleClass("arrow-down");
 	$(element).siblings().toggleClass("hidden");
 }
+function addToTasks(element){
+	//console.log("addToTasks")
+	//console.log(element)
+	//console.log(this)
+	if(event.which==13){ //enter
+		console.log(element)
+		var val = element.value;
+		var parent = $(element).parent().parent().data("id");
+		//console.log(parent)
+		var task = new Task({text: val, parent_id: parent})
+		taskCollection.add(task);
+		var html = compile_template('task', {task: task} )
+		console.log("html generated:", html)
+		var parent_element = $(element).parent();
+		$(element).addClass("hidden");
+		$(parent_element).append(html);
+	}
+	
+}
