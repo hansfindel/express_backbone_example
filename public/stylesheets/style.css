@@ -16,13 +16,21 @@ input{
 header ul, header ul li{
 	list-style: none;
 }
+ul li{
+	display: block;
+	clear: both;
+}
 li{
 	list-style: none;
+}
+li input, li ul{
+	display: block;
 }
 li span{
 	display: block;
 	margin-top: -20px;
 	margin-bottom: 10px;
+	margin-left: -55px;
 }
 li span.right{
 	margin-top: -22px;
