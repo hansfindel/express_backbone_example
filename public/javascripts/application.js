@@ -32,6 +32,9 @@ Task = Backbone.Model.extend({
 			return task_childs.length > 0;
 		}
 		return false
+	}, 
+	update_value: function(key, value){
+		this.attributes[key] = value;
 	}
 });
 TasksList = Backbone.Collection.extend({
@@ -229,6 +232,15 @@ function removeTask(task){
 			removeTask(task.childArray[i]);
 		}
 	}
+}
+function update_task(element){
+	var val = $(element).val()
+	console.log(val)
+	var tid = $(element).parent().data("id")
+	var task = taskCollection.getByTid(tid)
+	//console.log(task)
+	task.update_value('text', val)
+	console.log(task)
 }
 function save(){
 	var models = taskCollection.models;
