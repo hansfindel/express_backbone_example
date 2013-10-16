@@ -80,7 +80,7 @@ taskCollection.fetch = function(){
 	var tasks = retrieve();
 
 	this.models = [];
-	if(tasks.length == 0){
+	if(tasks == null || tasks.length == 0){
 		this.add( new Task({"text": "text1", "tid": "1"}) )
 		this.add( new Task({"text": "text2", "tid": "2"}) )
 		this.add( new Task({"text": "text3", "tid": "3"}) )
