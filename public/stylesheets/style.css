@@ -37,6 +37,7 @@ input:hover[type=button]{
 }
 header ul, header ul li{
 	list-style: none;
+	display: inline-block;
 }
 ul{
 	min-height: 30px;
@@ -119,4 +120,8 @@ li > .destroy:after {
 
 li:hover > .destroy {
 	display: block;
+}
+.splash{
+	text-align: center;
+	line-height: 6em;
 }

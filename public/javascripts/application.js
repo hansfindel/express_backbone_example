@@ -150,14 +150,18 @@ var AppRouter = Backbone.Router.extend({
 
     routes:{
         "":"splash",
+        "/":"splash",
         "home":"home"
     },
 
     //Controllers
     splash:function(){
     	setTimeout(function(){
+    		$("div[data-role=page]").remove()
+    		$("li.hidden").removeClass("hidden")
     		app.home();
         }, SPLASH_TIME_OUT);
+        this.changePage(new SplashView(),'slide',false);
     },
         
     home:function () {
