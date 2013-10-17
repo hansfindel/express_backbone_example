@@ -1,7 +1,4 @@
-//console.log("asdf")
-
 //var api_host = "http://192.168.0.178:3000";
-//var api_host = "localhost:3000"
 var api_host = "http://localhost:3000"
 
 //Models
@@ -48,7 +45,7 @@ TasksList = Backbone.Collection.extend({
     //console.log("params: ", params);
     return response.tasks;
   },
-  //success: function()
+  
   filterByParentId: function(parent_id) {
     filtered = this.filter(function(task) {
       return task.get("parent_id") == parent_id;
@@ -71,12 +68,10 @@ TasksList = Backbone.Collection.extend({
 });
 
 //Vars
-
 var task = new Task;
 var taskCollection = new TasksList;
 
 taskCollection.fetch = function(){
-	//console.log("asdfasf")
 	var tasks = retrieve();
 
 	this.models = [];
@@ -109,10 +104,6 @@ var SPLASH_TIME_OUT = 500;
 
 //Views
 window.SplashView = Backbone.View.extend({
-	// var tag = document.getElementById("splash"),
-	// tag = $('#splash')[0], 
-	// console.log(tag)
-	// template:_.template(   ),
 	template: _.template($('#splash').html()),
 
     render:function () {
@@ -123,7 +114,6 @@ window.SplashView = Backbone.View.extend({
 
 window.HomeView = Backbone.View.extend({
     template:_.template($('#home').html()),
-    //model: Event, 
     initialize:function() {
     	taskCollection.fetch(); 
         _.bindAll(this,'render','addOne');    
@@ -132,22 +122,17 @@ window.HomeView = Backbone.View.extend({
 
     render:function () {
         var collection = this.collection.main();
-        //console.log("home collection: ", collection)
         $(this.el).html( this.template({ tasks: collection.models }) );
         return this;
     },
 
     addOne: function () {
-        //console.log("homeView addone:")
         this.render();
-        //console.log("/homeView addone")
     }
-
 });
 
 
 var AppRouter = Backbone.Router.extend({
-
     routes:{
         "":"splash",
         "/":"splash",
@@ -165,7 +150,6 @@ var AppRouter = Backbone.Router.extend({
     },
         
     home:function () {
-        //console.log('#home');
         var home_collection = taskCollection;
         this.changePage(new HomeView({ collection: home_collection }),'slide',true);
     },
@@ -173,17 +157,14 @@ var AppRouter = Backbone.Router.extend({
     changePage:function (page, pagetransition,reverse) {
         var transition = null;
         $(page.el).attr('data-role', 'page');
-        //page.render(model.toJSON());
         page.render();
         $('body').append($(page.el));
     }
 });
 
 $(document).ready(function () {
-    //console.log('document ready');
     app = new AppRouter();
     Backbone.history.start();
-
 });
 
 function compile_template(template_name, params){
@@ -192,29 +173,19 @@ function compile_template(template_name, params){
 
 function toggle_arrow(tid){
 	element = "span[data-span_id=" + tid + "]"
-	//console.log(element)
-	//console.log($(element))
 	$(element).toggleClass("right");
 	$(element).children().toggleClass("arrow-right");
 	$(element).children().toggleClass("arrow-down");
 	$(element).siblings().toggleClass("hidden");
 }
 function addToTasks(element){
-	//console.log("addToTasks")
-	//console.log(element)
-	//console.log(this)
 	if(event.which==13){ //enter
-		//console.log(element)
 		var val = element.value;
 		var parent = $(element).parent().parent().data("id");
-		//console.log(parent)
 		var task = new Task({text: val, parent_id: parent})
-		//console.log(task)
 		taskCollection.add(task);
 		var html = compile_template('task', {task: task} )
-		//console.log("html generated:", html)
 		var parent_element = $(element).parent();
-		//$(element).addClass("hidden");
 		$(element).remove()
 		$(parent_element).append(html);
 
@@ -243,7 +214,6 @@ function removeTask(task){
 	if(taskCollection){
 		taskCollection.remove(task);
 		task.childs()
-		//console.log( task.childArray )
 		for(var i = 0; i < task.childArray.length; i++){
 			removeTask(task.childArray[i]);
 		}
@@ -251,16 +221,12 @@ function removeTask(task){
 }
 function update_task(element){
 	var val = $(element).val()
-	//console.log(val)
 	var tid = $(element).parent().data("id")
 	var task = taskCollection.getByTid(tid)
-	//console.log(task)
 	task.update_value('text', val)
-	//console.log(task)
 }
 function save(){
 	var models = taskCollection.models;
-	//console.log( models)
 	if(typeof(Storage)!=="undefined"){
     	localStorage.setItem( 'tasks', JSON.stringify(models) );
 	}
